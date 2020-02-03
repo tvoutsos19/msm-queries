@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -27,7 +27,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'console_ip_whitelist', github: 'firstdraft/console_ip_whitelist'
+  # gem 'console_ip_whitelist', github: 'firstdraft/console_ip_whitelist'
   gem 'dotenv-rails'
   gem 'grade_runner', github: 'firstdraft/grade_runner'
   gem 'pry-rails'

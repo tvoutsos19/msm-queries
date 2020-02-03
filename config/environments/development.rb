@@ -1,4 +1,23 @@
 Rails.application.configure do
+  config.hosts.clear
+  path = Rails.root.join("whitelist.yml")
+  default_whitelist_path = Rails.root.join("default_whitelist.yml")
+  whitelisted_ips = []
+
+  if File.exist?(path)
+    whitelisted_ips = YAML.load_file(path)
+  end
+
+  if File.exist?(default_whitelist_path)
+    whitelisted_ips = whitelisted_ips.concat(YAML.load_file(default_whitelist_path))
+  end
+
+  config.web_console.permissions = whitelisted_ips
+  config.web_console.whiny_requests = false
+
+  BetterErrors::Middleware.allow_ip! '10.138.0.0/16'
+
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -8,22 +27,6 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
-  Rails.application.configure do
-    config.hosts.clear
-  end  
-
-  path = Rails.root.join("whitelist.yml")
-  default_whitelist_path = Rails.root.join("default_whitelist.yml")
-  whitelisted_ips = []
-  if File.exist?(path)
-    whitelisted_ips = YAML.load_file(path)
-  end
-  if File.exist?(default_whitelist_path)
-    whitelisted_ips = whitelisted_ips.concat(YAML.load_file(default_whitelist_path))
-  end
-  config.web_console.permissions = whitelisted_ips
-  config.web_console.whiny_requests = false
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -47,6 +50,11 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.perform_caching = false
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -59,7 +67,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
