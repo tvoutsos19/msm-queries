@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_09_25_193522) do
 
   create_table "directors", force: :cascade do |t|
     t.string "name"
-    t.integer "dob"
+    t.date "dob"
     t.text "bio"
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
