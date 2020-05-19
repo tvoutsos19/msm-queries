@@ -91,7 +91,9 @@ task({ :dummy_data => :environment}) do
     {id: 47, title: "Life Is Beautiful", year: "1997", duration: 116, description: "A Jewish man has a wonderful romance with the help of his humour, but must use that same quality to protect his son in a Nazi death camp.", image: "http://ia.media-imdb.com/images/M/MV5BMTM3NDg0OTkxOV5BMl5BanBnXkFtZTcwMTk2NzIyMQ@@._V1_SY317_CR4,0,214,317_.jpg", director_id: 32, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"},
     {id: 48, title: "The Pianist", year: "2002", duration: 150, description: "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II.", image: "http://ia.media-imdb.com/images/M/MV5BMTc4OTkyOTA3OF5BMl5BanBnXkFtZTYwMDIxNjk5._V1_SX214_.jpg", director_id: 33, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"},
     {id: 49, title: "The Departed", year: "2006", duration: 151, description: "An undercover state cop who infiltrated a Mafia clan and a mole in the police force working for the same mob race to track down and identify each other before being exposed to the enemy, after both sides realize their outfit has a rat.", image: "http://ia.media-imdb.com/images/M/MV5BMTI1MTY2OTIxNV5BMl5BanBnXkFtZTYwNjQ4NjY3._V1_SY317_CR0,0,214,317_.jpg", director_id: 12, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"},
-    {id: 50, title: "M", year: "1931", duration: 99, description: "When the police in a German city are unable to catch a child-murderer, other criminals join in the manhunt.", image: "http://ia.media-imdb.com/images/M/MV5BMTIwNDU4OTI2MF5BMl5BanBnXkFtZTcwNzI5MjcyMQ@@._V1_SY317_CR6,0,214,317_.jpg", director_id: 34, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"}
+    {id: 50, title: "M", year: "1931", duration: 99, description: "When the police in a German city are unable to catch a child-murderer, other criminals join in the manhunt.", image: "http://ia.media-imdb.com/images/M/MV5BMTIwNDU4OTI2MF5BMl5BanBnXkFtZTcwNzI5MjcyMQ@@._V1_SY317_CR6,0,214,317_.jpg", director_id: 34, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"},
+    {id: 51, title: "Intersteller", year: "2014", duration: 169, description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", image: "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_SX675_AL_.jpg", director_id: 5, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"},
+    {id: 52, title: "Dunkirk", year: "2017", duration: 106, description: "Allied soldiers from Belgium, the British Empire, and France are surrounded by the German Army, and evacuated during a fierce battle in World War II.", image: "https://m.media-amazon.com/images/M/MV5BN2YyZjQ0NTEtNzU5MS00NGZkLTg0MTEtYzJmMWY3MWRhZjM2XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_SY1000_CR0,0,674,1000_AL_.jpg", director_id: 5, created_at: "2015-08-12 17:20:05", updated_at: "2015-08-12 17:20:05"}
   ]
   Movie.insert_all!(movie_values)
   puts "There are #{Movie.count} movies in the database"
@@ -1487,7 +1489,9 @@ character_values = [
     {id: 719, name: "Blind panhandler", movie_id: 50, actor_id: 649, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"},
     {id: 720, name: "Minister", movie_id: 50, actor_id: 650, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"},
     {id: 721, name: "Police chief", movie_id: 50, actor_id: 651, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"},
-    {id: 722, name: "Criminal secretary", movie_id: 50, actor_id: 652, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"}
+    {id: 722, name: "Criminal secretary", movie_id: 50, actor_id: 652, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"},
+    {id: 723, name: "Farrier", movie_id: 52, actor_id: 183, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"},
+    {id: 724, name: "Professor Brand", movie_id: 51, actor_id: 74, created_at: "2015-08-12 17:20:11", updated_at: "2015-08-12 17:20:11"}
   ]
 
 
