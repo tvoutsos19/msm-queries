@@ -1,5 +1,5 @@
 module ActiveRecord
   module Delegation
-    alias_method :at, :[]
+    alias at []
   end
 end
