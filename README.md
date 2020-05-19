@@ -2,12 +2,12 @@
 
 ## Objective
 
-In this project, we'll practice using `.where` and other ActiveRecord query methods. (It would be good to have [the ActiveRecord Chapter](https://chapters.firstdraft.com/chapters/770#where) open in a tab for easy reference.) We're going to practice in the context of our familiar movie-related domain — Directors, Movies, Characters, and Actors. If you still have the printed-out paper tables from Day 1, it's very helpful to have it out to look at.
-
-## Setup
-
- 1. Open a `rails console` from the command prompt. If it doesn't launch successfully, then you may need to `bin/setup` and wait for it to complete.
+In this project, we'll finally use our first database tables! Mostly, we'll practice using `.where` and other ActiveRecord query methods. (It would be good to have [the ActiveRecord Chapter](https://chapters.firstdraft.com/chapters/770#where) open in a tab for easy reference.) We're going to practice in the context of our familiar movie-related domain — Directors, Movies, Characters, and Actors.
  
+## Target
+
+
+
 ## Important notes about rails console 
 
  1. Sometimes when the output of a Ruby expression is very long, `rails console` is going to paginate it for you. You will have a `:` prompt when this is true, and you can hit <kbd>return</kbd> to scroll through line by line, or <kbd>space</kbd> to scroll through page by page.
@@ -167,8 +167,10 @@ The following are [instance-level methods](https://chapters.firstdraft.com/chapt
 
 ### SQL
 
-
-
+```sql
+INSERT INTO "directors" ("name", "dob", "bio", "image", "created_at", "updated_at")
+VALUES ("Greta Gerwig", "2020-05-19", "Greta Celeste Gerwig /ˈɡɜːrwɪɡ/; born August 4, 1983) is an American actress and filmmaker. She first garnered attention after working on and appearing in several mumblecore films. Between 2006 and 2009, she appeared in a number of films by Joe Swanberg, some of which she co-wrote or co-directed, including Hannah Takes the Stairs 2007) and Nights and Weekends 2008).", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Greta_Gerwig_Berlinale_2018.jpg/330px-Greta_Gerwig_Berlinale_2018.jpg", "2020-05-19 17:47:04.103354", "2020-05-19 17:47:04.103354")
+```
 
 ```sql
 INSERT INTO "movies" ("title", "year", "duration", "description", "image", "director_id", "created_at", "updated_at")
