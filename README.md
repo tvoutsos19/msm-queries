@@ -3,12 +3,73 @@
 ## Objective
 
 In this project, we'll finally use our first database tables! Mostly, we'll practice using `.where` and other ActiveRecord query methods. (It would be good to have [the ActiveRecord Chapter](https://chapters.firstdraft.com/chapters/770#where) open in a tab for easy reference.) We're going to practice in the context of our familiar movie-related domain — Directors, Movies, Characters, and Actors.
- 
-## Target
 
+## Two new visual development URLs
 
+We have two new visual development tools that we can visit, in addition to `/git`:
 
-## Important notes about rails console 
+ - `/rails/info`
+ - `/rails/db`
+
+Check them out!
+
+## Our database
+
+In this project, I've already created our database and four tables: the familiar directors, movies, characters, and actors.
+
+You can see them visually at `/rails/db`.
+
+### SQL
+
+Normally, to add some records into a relational database, we'd have to learn Structured Query Language (SQL). Here are some examples of SQL, if you want to give it a try in the SQL Editor.
+
+Adding a director:
+
+```sql
+INSERT INTO "directors" ("name", "dob", "bio", "image", "created_at", "updated_at")
+VALUES ("Greta Gerwig", "2020-05-19", "Greta Celeste Gerwig /ˈɡɜːrwɪɡ/; born August 4, 1983) is an American actress and filmmaker. She first garnered attention after working on and appearing in several mumblecore films. Between 2006 and 2009, she appeared in a number of films by Joe Swanberg, some of which she co-wrote or co-directed, including Hannah Takes the Stairs 2007) and Nights and Weekends 2008).", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Greta_Gerwig_Berlinale_2018.jpg/330px-Greta_Gerwig_Berlinale_2018.jpg", "2020-05-19 17:47:04.103354", "2020-05-19 17:47:04.103354")
+```
+
+Adding a movie:
+
+```sql
+INSERT INTO "movies" ("title", "year", "duration", "description", "image", "director_id", "created_at", "updated_at")
+VALUES ("Little Women", 2019, 135, "Jo March reflects back and forth on her life, telling the beloved story of the March sisters - four young women, each determined to live life on her own terms.", "https://upload.wikimedia.org/wikipedia/en/9/9d/Little_Women_%282019_film%29.jpeg", 35, "2020-05-19 17:31:22.333798", "2020-05-19 17:31:22.333798")
+```
+
+Relational databases are extremely powerful, and SQL is a very sharp tool. But, not a lot of fun, if you had to type it out. Wouldn't it be nicer to write Ruby?
+
+## Add Ruby classes
+
+Let's create some Ruby classes that will help us interact with our database. In the `app/models` folder, create the following:
+
+```ruby
+# app/models/actor.rb
+class Actor < ApplicationRecord
+end
+```
+
+```ruby
+# app/models/character.rb
+class Character < ApplicationRecord
+end
+```
+
+```ruby
+# app/models/director.rb
+class Director < ApplicationRecord
+end
+```
+
+```ruby
+# app/models/movie.rb
+class Movie < ApplicationRecord
+end
+```
+
+Now, let's try these Ruby classes out. We could create a rake task, but a quicker way to run one-line Ruby programs is to use the `rails console`. Run that command at a Terminal prompt, and you'll get a REPL where you can run Ruby interactively.
+
+## Important notes about `rails console`
 
  1. Sometimes when the output of a Ruby expression is very long, `rails console` is going to paginate it for you. You will have a `:` prompt when this is true, and you can hit <kbd>return</kbd> to scroll through line by line, or <kbd>space</kbd> to scroll through page by page.
 
@@ -29,7 +90,7 @@ Character.count
 Actor.count
 ```
 
-You'll see that I have already created these 4 tables; they exist, but right now there are no rows in any of them. You can see what columns are in each table by:
+You'll see that the `.count` method already works, even though we didn't define it; but right now there are no rows in any of the tables. You can see what columns are in each table by:
 
  - Typing just the class name into `rails console`, e.g.
 
@@ -76,11 +137,11 @@ We could enter a bunch of movies — perhaps even [the entire IMDB Top 250](htt
 
 Go ahead and add the IMDB Top 250 by hand with `.new`, `.save`, etc..... just kidding! That would take forever. In the real world, _someone_ would initially have to add all of our data, whether it's us, or our employees, or our users (through forms in their browser, obviously, not through `rails console`).
 
-But, to make life easy for developers working on this app, I've included a program that will populate your tables for you quickly. I named the program `dev:prime`, and you can run it from the command prompt with `rails dev:prime`.
+But, to make life easy for developers working on this app, I've included a program that will populate your tables for you quickly. I named the program `dummy_data`, and you can run it from the command prompt with `rails dummy_data`.
 
 We'll talk more about how to write these programs in a later lesson, but they are just Ruby scripts like the ones you've written before. In this case, the Ruby script automates what you've been doing in `rails console` — using `Director`, `Movie`, `Character`, and `Actor` to CRUD records.
 
-When you run `rails dev:prime`, you should see output like this:
+When you run `rails dummy_data`, you should see output similar to this:
 
 ```bash
 There are 34 directors in the database
@@ -91,13 +152,14 @@ There are 722 characters in the database
 
 You can verify this yourself by `.count`ing each table in `rails console`.
 
-## 5. Appetizer queries 
 
-Okay! Now that we have some data to play around with, let's practice answering some queries in `rails console`.
+## Target
+
+There's no target live application, but there are a few routes pre-defined in `config/routes.rb`. Our goal is to answer the following questions on those pages:
 
 ### Finding a movie by title
 
-In what year was the movie `"The Dark Knight"` released?
+How many days ago was "The Dark Knight" released?
 
  - Use the [`.where` method](https://chapters.firstdraft.com/chapters/770#where). It is everything.
  - Remember that [`.where` always returns a collection, not a single row](https://chapters.firstdraft.com/chapters/770#where-always-returns-a-collection-not-a-single-row).
@@ -110,69 +172,5 @@ In what year was the movie `"The Dark Knight"` released?
  - How many films in our table were directed by Francis Ford Coppola?
  - How many films did Morgan Freeman appear in?
 
-## 6. Your Tasks
-
-Define the following methods. When you think you've got them working, you can run `rails grade` at a command prompt to check your work.
-
-### Class methods to define
-
-The following are [class-level methods](https://chapters.firstdraft.com/chapters/769#defining-class-methods) to define.
-
- - `Director.youngest` should return the youngest director on the list. Start by defining a class method with that name:
-
-    ```ruby
-    class Director < ApplicationRecord
-      def Director.youngest
-        return "hello world"
-      end
-    end
-    ```
-
-    And then try calling that method in `rails console` with `Director.youngest` (don't forget to `reload!`). Once you've established that you've defined the method correctly, work on enhancing the method to return what we're actually looking for. _Work in small steps._
-
- - `Director.eldest` should return the eldest director on the list. Watch out for `nil` values in the `dob` column — `nil` is considered to be "less than" anything else, when ordered.
-
-    You can [use `.not` to filter out](https://chapters.firstdraft.com/chapters/770#wherenotthis) those rows first.
- - `Movie.last_decade` should return all of the rows in the movies table where the year is within the last 10 years.
- - `Movie.short` should return all of the rows in the movies table where the duration is less than 90 minutes.
- - `Movie.long` should return all of the rows in the movies table where the duration is greater than 180 minutes.
-
-### Instance methods to define
-
-The following are [instance-level methods](https://chapters.firstdraft.com/chapters/769#defining-instance-methods) to define.
-
- - You should define an instance method called `filmography` such that any director, let's imagine it was in a variable called `d`, could use `d.filmography` and return the rows in the movies table that belong to it.
-
-    Remember, our models are accessible from anywhere in the Rails application — `lib/tasks`, `rails console`, and _even from within other models_. So, we can reference `Movie` from inside `Director`:
-
-    ```ruby
-    class Director < ApplicationRecord
-      def filmography
-        return Movie.where({ :director_id => self.id })
-      end
-    end
-    ```
- - Imagine there's an arbitrary movie in a variable `m`. Define instance methods such that:
-    - `m.director` should return the **row** in the directors table whose ID matches the movie's `director_id`. Note that the method shouldn't just return the _name_ of the director; we want the whole row, so that we can use the other details if we want them (like date of birth or bio).
-    - `m.characters` should return a collection of the characters that were in the movie.
- - Imagine there's an arbitrary actor in a variable `a`. `a.characters` should return a collection of the characters that were played by the actor.
-
-### Stretch goals
-
- - Imagine there's an arbitrary movie in a variable `m`. `m.cast` should return a collection of `Actor`s (_not_ `Character`s) that appeared in that movie. Hint: [`.pluck`](https://chapters.firstdraft.com/chapters/770#pluck).
- - Imagine there's an arbitrary actor in a variable `a`. `a.filmography` should return a collection of `Movie`s that the actor appeared in.
 
 
-
-
-### SQL
-
-```sql
-INSERT INTO "directors" ("name", "dob", "bio", "image", "created_at", "updated_at")
-VALUES ("Greta Gerwig", "2020-05-19", "Greta Celeste Gerwig /ˈɡɜːrwɪɡ/; born August 4, 1983) is an American actress and filmmaker. She first garnered attention after working on and appearing in several mumblecore films. Between 2006 and 2009, she appeared in a number of films by Joe Swanberg, some of which she co-wrote or co-directed, including Hannah Takes the Stairs 2007) and Nights and Weekends 2008).", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Greta_Gerwig_Berlinale_2018.jpg/330px-Greta_Gerwig_Berlinale_2018.jpg", "2020-05-19 17:47:04.103354", "2020-05-19 17:47:04.103354")
-```
-
-```sql
-INSERT INTO "movies" ("title", "year", "duration", "description", "image", "director_id", "created_at", "updated_at")
-VALUES ("Little Women", 2019, 135, "Jo March reflects back and forth on her life, telling the beloved story of the March sisters - four young women, each determined to live life on her own terms.", "https://upload.wikimedia.org/wikipedia/en/9/9d/Little_Women_%282019_film%29.jpeg", 35, "2020-05-19 17:31:22.333798", "2020-05-19 17:31:22.333798")
-```
