@@ -79,7 +79,7 @@ Now, let's try these Ruby classes out. We could create a rake task, but a quicke
 
  2. If you are in `rails console` and then make a change to a model (for example, you define a new method or fix a syntax error), then, annoyingly, **you have to `exit` and then start a new `rails console`** to pick up the new logic. Or, you can use the `reload!` method.
 
-## 2. Exploring the tables
+## Exploring the tables
 
 Open a Terminal tab, launch a `rails console` session, and then try the following:
 
@@ -101,7 +101,7 @@ You'll see that the `.count` method already works, even though we didn't define 
 
  - Looking at the comments at the top of the model file, e.g. `app/models/movie.rb`. (These comments are auto-generated and kept up to date by the excellent [annotate gem](https://github.com/ctran/annotate_models).)
 
-## 3. CRUD some records Manually
+## CRUD some records manually
 
 You can enter some rows into tables using the [ActiveRecord methods that you learned](https://chapters.firstdraft.com/chapters/770):
 
@@ -131,7 +131,7 @@ m.save
 
 Add a couple more directors and movies to get some practice instantiating objects, assigning values to their attributes, and saving  them.
 
-## 4. Hydrate with dummy data
+## Hydrate with dummy data
 
 We could enter a bunch of movies — perhaps even [the entire IMDB Top 250](https://www.imdb.com/chart/top) — manually in `rails console` this way; adding directors and actors first, then adding movies, and finally adding characters to join movies and actors.
 
@@ -152,25 +152,31 @@ There are 722 characters in the database
 
 You can verify this yourself by `.count`ing each table in `rails console`.
 
-
 ## Target
 
-There's no target live application, but there are a few routes pre-defined in `config/routes.rb`. Our goal is to answer the following questions on those pages:
+Here is our target:
+
+[https://msm-queries.matchthetarget.com/](https://msm-queries.matchthetarget.com/)
+
+## Tasks
 
 ### Finding a movie by title
 
-How many days ago was "The Dark Knight" released?
+How many years ago was "Casablanca" released?
 
  - Use the [`.where` method](https://chapters.firstdraft.com/chapters/770#where). It is everything.
  - Remember that [`.where` always returns a collection, not a single row](https://chapters.firstdraft.com/chapters/770#where-always-returns-a-collection-not-a-single-row).
+ - Calculate the value dynamically (using e.g. `Time.now.year`), so that the number is always up to date.
 
 ### Other queries
 
  - How many movies in our table are from [before](https://chapters.firstdraft.com/chapters/770#less-than-or-greater-than) the year 2000?
+    - Displays the titles and years of the films.
  - Who is the youngest director in our table?
- - How many directors in our table are less than 55 years old? What are their names?
+    - Display the date of birth of the director. (Remember you can call `.strftime("")` on `Time`, `Date`, and `DateTime`s to format them. Tools like [strftime.net](http://strftime.net/) and [For a Good Strftime](https://www.foragoodstrftime.com/) exist to help compose the formatting string argument.)
+ - How many directors in our table are less than 55 years old?
+    - Display their names and dates of birth.
  - How many films in our table were directed by Francis Ford Coppola?
+    - Display the titles and years of the films.
  - How many films did Morgan Freeman appear in?
-
-
-
+    - Display the titles and years of the films.

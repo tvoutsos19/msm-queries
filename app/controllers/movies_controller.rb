@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
-  def tdk
-    render({ :template => "movie_templates/dk.html.erb" })
+  def casablanca
+    render({ :template => "movie_templates/cb.html.erb" })
   end
   
   def before2k
