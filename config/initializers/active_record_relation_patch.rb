@@ -6,8 +6,4 @@ module ActiveRecord
       "#{self.class} (array with #{row_count} #{model} #{"instance".pluralize(row_count)} inside)"
     end
   end
-
-  module Calculations
-    alias map_relation_to_array pluck
-  end
 end
