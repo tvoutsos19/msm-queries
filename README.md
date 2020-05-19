@@ -161,3 +161,11 @@ The following are [instance-level methods](https://chapters.firstdraft.com/chapt
 
  - Imagine there's an arbitrary movie in a variable `m`. `m.cast` should return a collection of `Actor`s (_not_ `Character`s) that appeared in that movie. Hint: [`.pluck`](https://chapters.firstdraft.com/chapters/770#pluck).
  - Imagine there's an arbitrary actor in a variable `a`. `a.filmography` should return a collection of `Movie`s that the actor appeared in.
+
+
+
+
+### SQL
+
+INSERT INTO "movies" ("title", "year", "duration", "description", "image", "director_id", "created_at", "updated_at")
+VALUES ("Little Women", 2019, 135, "Jo March reflects back and forth on her life, telling the beloved story of the March sisters - four young women, each determined to live life on her own terms.", "https://upload.wikimedia.org/wikipedia/en/9/9d/Little_Women_%282019_film%29.jpeg", 35, "2020-05-19 17:31:22.333798", "2020-05-19 17:31:22.333798")
