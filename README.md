@@ -8,16 +8,12 @@ In this project, we'll finally use our first database tables! Mostly, we'll prac
 
 We have two new visual development tools that we can visit, in addition to `/git`:
 
- - `/rails/info`
- - `/rails/db`
-
-Check them out!
+ - `/rails/info`: shows all visitable routes in the applications
+ - `/rails/db`: shows a visual interface for the database
 
 ## Our database
 
-In this project, I've already created our database and four tables: the familiar directors, movies, characters, and actors.
-
-You can see them visually at `/rails/db`.
+If you visit `/rails/db`, you'll see that in this project, I've already created our database and added four tables: the familiar directors, movies, characters, and actors. (In future projects, you'll learn how to add your own tables with whatever columns you want; it's just one command-line command per table.)
 
 ### SQL
 
@@ -27,7 +23,7 @@ Adding a director:
 
 ```sql
 INSERT INTO "directors" ("name", "dob", "bio", "image", "created_at", "updated_at")
-VALUES ("Greta Gerwig", "2020-05-19", "Greta Celeste Gerwig /ˈɡɜːrwɪɡ/; born August 4, 1983) is an American actress and filmmaker. She first garnered attention after working on and appearing in several mumblecore films. Between 2006 and 2009, she appeared in a number of films by Joe Swanberg, some of which she co-wrote or co-directed, including Hannah Takes the Stairs 2007) and Nights and Weekends 2008).", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Greta_Gerwig_Berlinale_2018.jpg/330px-Greta_Gerwig_Berlinale_2018.jpg", "2020-05-19 17:47:04.103354", "2020-05-19 17:47:04.103354")
+VALUES ("Greta Gerwig", "1983-08-04", "Greta Celeste Gerwig /ˈɡɜːrwɪɡ/; born August 4, 1983) is an American actress and filmmaker. She first garnered attention after working on and appearing in several mumblecore films. Between 2006 and 2009, she appeared in a number of films by Joe Swanberg, some of which she co-wrote or co-directed, including Hannah Takes the Stairs 2007) and Nights and Weekends 2008).", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Greta_Gerwig_Berlinale_2018.jpg/330px-Greta_Gerwig_Berlinale_2018.jpg", "2020-05-19 17:47:04.103354", "2020-05-19 17:47:04.103354")
 ```
 
 Adding a movie:
@@ -37,11 +33,15 @@ INSERT INTO "movies" ("title", "year", "duration", "description", "image", "dire
 VALUES ("Little Women", 2019, 135, "Jo March reflects back and forth on her life, telling the beloved story of the March sisters - four young women, each determined to live life on her own terms.", "https://upload.wikimedia.org/wikipedia/en/9/9d/Little_Women_%282019_film%29.jpeg", 35, "2020-05-19 17:31:22.333798", "2020-05-19 17:31:22.333798")
 ```
 
-Relational databases are extremely powerful, and SQL is a very sharp tool. But, not a lot of fun, if you had to type it out. Wouldn't it be nicer to write Ruby?
+Go ahead and paste these in exactly as-is if you'd like to add a row to each table.
+
+Relational databases are extremely powerful, and SQL is a very sharp tool. But, not a lot of fun to type out by hand.
+
+Wouldn't it be nicer to write Ruby?
 
 ## Add Ruby classes
 
-Let's create some Ruby classes that will help us interact with our database. In the `app/models` folder, create the following:
+Let's create some Ruby classes that will help us interact with our database. In the `app/models` folder, create the following four files:
 
 ```ruby
 # app/models/actor.rb
@@ -101,35 +101,48 @@ You'll see that the `.count` method already works, even though we didn't define 
 
  - Looking at the comments at the top of the model file, e.g. `app/models/movie.rb`. (These comments are auto-generated and kept up to date by the excellent [annotate gem](https://github.com/ctran/annotate_models).)
 
-## CRUD some records manually
+## CRUD some records
 
-You can enter some rows into tables using the [ActiveRecord methods that you learned](https://chapters.firstdraft.com/chapters/770):
+Okay, now that we have ActiveRecord Ruby classes to translate for us, we can generate the same SQL as above (better actually) by just using familiar Ruby methods. Let's [create some records](https://chapters.firstdraft.com/chapters/770#new):
 
 ```ruby
 d = Director.new
-d.name = "Anthony Russo"
-d.dob = "February 3, 1970"
+d.name = "Greta Gerwig"
+d.dob = "August 4, 1983"
+```
+
+So far it's just like [any other Ruby class we've defined](https://chapters.firstdraft.com/chapters/769#our-own-classes), but now we can also do...
+
+```ruby
 d.save
 ```
 
+And voila! ActiveRecord generates a fully-formed SQL statement to transact with the database.
+
 You can check out your newly saved director:
+
+```ruby
+Director.all.at(-1)
+```
+
+or, for short,
 
 ```ruby
 Director.last
 ```
 
-Assuming the new director's ID number is `42`, we can add a new movie:
+Similarly, we can add a new movie (this assumes it is directed by someone who was assigned the ID number `42` in the directors table):
 
 ```ruby
 m = Movie.new
-m.title = "Avengers: Infinity War"
-m.year = 2018
-m.duration = 149
+m.title = "Little Women"
+m.year = 2019
+m.duration = 135
 m.director_id = 42
 m.save
 ```
 
-Add a couple more directors and movies to get some practice instantiating objects, assigning values to their attributes, and saving  them.
+Add a couple more directors and movies, an actor and a character, to get some practice instantiating objects, assigning values to their attributes, and saving them.
 
 ## Hydrate with dummy data
 
