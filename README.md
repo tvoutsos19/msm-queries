@@ -144,17 +144,17 @@ m.save
 
 Add a couple more directors and movies, an actor and a character, to get some practice instantiating objects, assigning values to their attributes, and saving them.
 
-## Hydrate with dummy data
+## Hydrate with sample data
 
 We could enter a bunch of movies — perhaps even [the entire IMDB Top 250](https://www.imdb.com/chart/top) — manually in `rails console` this way; adding directors and actors first, then adding movies, and finally adding characters to join movies and actors.
 
 Go ahead and add the IMDB Top 250 by hand with `.new`, `.save`, etc..... just kidding! That would take forever. In the real world, _someone_ would initially have to add all of our data, whether it's us, or our employees, or our users (through forms in their browser, obviously, not through `rails console`).
 
-But, to make life easy for developers working on this app, I've included a program that will populate your tables for you quickly. I named the program `dummy_data`, and you can run it from the command prompt with `rails dummy_data`.
+But, to make life easy for developers working on this app, I've included a program that will populate your tables for you quickly. I named the program `sample_data`, and you can run it from the command prompt with `rails sample_data`.
 
 We'll talk more about how to write these programs in a later lesson, but they are just Ruby scripts like the ones you've written before. In this case, the Ruby script automates what you've been doing in `rails console` — using `Director`, `Movie`, `Character`, and `Actor` to CRUD records.
 
-When you run `rails dummy_data`, you should see output similar to this:
+When you run `rails sample_data`, you should see output similar to this:
 
 ```bash
 There are 34 directors in the database
