@@ -1,8 +1,16 @@
 # MSM QUERIES
 
+## Target
+
+Here is our target:
+
+[https://msm-queries.matchthetarget.com/](https://msm-queries.matchthetarget.com/)
+
 ## Objective
 
-In this project, we'll finally use our first database tables! Mostly, we'll practice using `.where` and other ActiveRecord query methods. (It would be good to have [the ActiveRecord Chapter](https://chapters.firstdraft.com/chapters/770#where) open in a tab for easy reference.) We're going to practice in the context of our familiar movie-related domain — Directors, Movies, Characters, and Actors.
+In this project, we'll finally use our first database tables! Mostly, we'll practice using `.where` and other **ActiveRecord** methods. `ActiveRecord` is the name of the class that Rails provides from which we inherit lots of database-related goodies. (There is an [the ActiveRecord Chapter](https://chapters.firstdraft.com/chapters/770) also, which you should read through after watching the video paired with this project.)
+
+We're going to practice in the context of our familiar movie-related domain — Directors, Movies, Characters, and Actors. As you're watching the video, you'll probably (hopefully) have lots of questions — **write them down** for us to discuss the next time we're together!
 
 ## Two new visual development URLs
 
@@ -193,3 +201,7 @@ How many years ago was "Casablanca" released?
     - Display the titles and years of the films.
  - How many films did Morgan Freeman appear in?
     - Display the titles and years of the films.
+
+## Drive the view templates with the data from the database
+
+Now that we've gotten our feet wet with using ActiveRecord to interact with the database, let's put it together with everything we've learned in the past — RCAV, `params`, HTML, etc — to make our app match the target.
