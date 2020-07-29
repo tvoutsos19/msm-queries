@@ -125,22 +125,6 @@ describe "/directors/[DIRECTOR ID]" do
 end
 
 describe "/directors/[DIRECTOR ID]" do
-  it "displays the dob of a specified Director record", points: 1 do
-    director = Director.new
-    director.name = "Travis McElroy"
-    director.dob = 38.years.ago
-    director.bio = "They really like films!"
-    director.image = "https://robohash.org/Random%20Image?set=set4"
-    director.save
-
-    visit "/directors/#{director.id}"
-
-    expect(page).to have_text(director.image),
-      "Expected page to have the image, '#{director.image}'"
-  end
-end
-
-describe "/directors/[DIRECTOR ID]" do
   it "displays the names of the movies that were directed by the Director", points: 1 do
     director = Director.new
     director.name = "Travis McElroy"
@@ -186,7 +170,7 @@ describe "/directors/[DIRECTOR ID]" do
     expect(page).to have_text(deep_impact.title),
       "Expected page to have the title, '#{deep_impact.title}'"
     expect(page).to_not have_text(hello_world.title),
-      "Expected page to have the title, '#{hello_world.title}'"
+      "Expected page to not have the title, '#{hello_world.title}'"
   end
 end
 
