@@ -117,3 +117,128 @@ describe "/movies" do
 
   end
 end
+
+describe "/movies/[MOVIE ID]" do
+  it "displays the name of the Director who directed the Movie", points: 1 do
+    
+    director = Director.new
+    director.name = "Matthew Mercer"
+    director.dob = 36.years.ago
+    director.image = ""
+    director.save
+
+    the_turgle = Movie.new
+    the_turgle.title = "The Turgle"
+    the_turgle.description = "Matt Damon, being Matt Damon."
+    the_turgle.year = 2008
+    the_turgle.duration = 90
+    the_turgle.director_id = director.id
+    the_turgle.save
+
+    visit "/movies/#{the_turgle.id}"
+    
+    expect(page).to have_text(director.name),
+      "Expected page to have the name, '#{director.name}'"
+
+  end
+end
+
+describe "/movies/[MOVIE ID]" do
+  it "displays the title of the Movie", points: 1 do
+    
+    director = Director.new
+    director.name = "Matthew Mercer"
+    director.dob = 36.years.ago
+    director.image = ""
+    director.save
+
+    the_turgle = Movie.new
+    the_turgle.title = "The Turgle"
+    the_turgle.description = "Matt Damon, being Matt Damon."
+    the_turgle.year = 2008
+    the_turgle.duration = 90
+    the_turgle.director_id = director.id
+    the_turgle.save
+
+    visit "/movies/#{the_turgle.id}"
+    
+    expect(page).to have_text(the_turgle.title),
+      "Expected page to have the title, '#{the_turgle.title}'"
+
+  end
+end
+
+describe "/movies/[MOVIE ID]" do
+  it "displays the description of the Movie", points: 1 do
+    
+    director = Director.new
+    director.name = "Matthew Mercer"
+    director.dob = 36.years.ago
+    director.image = ""
+    director.save
+
+    the_turgle = Movie.new
+    the_turgle.title = "The Turgle"
+    the_turgle.description = "Matt Damon, being Matt Damon."
+    the_turgle.year = 2008
+    the_turgle.duration = 90
+    the_turgle.director_id = director.id
+    the_turgle.save
+
+    visit "/movies/#{the_turgle.id}"
+    
+    expect(page).to have_text(the_turgle.description),
+      "Expected page to have the description, '#{the_turgle.description}'"
+
+  end
+end
+
+describe "/movies/[MOVIE ID]" do
+  it "displays the year of the Movie", points: 1 do
+    
+    director = Director.new
+    director.name = "Matthew Mercer"
+    director.dob = 36.years.ago
+    director.image = ""
+    director.save
+
+    deep_impact = Movie.new
+    deep_impact.title = "Deep Impact"
+    deep_impact.description = "It's like evangelion."
+    deep_impact.year = 1999
+    deep_impact.duration = 95
+    deep_impact.director_id = director.id
+    deep_impact.save
+
+    visit "/movies/#{deep_impact.id}"
+    
+    expect(page).to have_text(deep_impact.year),
+      "Expected page to have the text, '#{deep_impact.year}'"
+
+  end
+end
+
+describe "/movies/[MOVIE ID]" do
+  it "displays the duration of the Movie", points: 1 do
+    
+    director = Director.new
+    director.name = "Matthew Mercer"
+    director.dob = 36.years.ago
+    director.image = ""
+    director.save
+
+    deep_impact = Movie.new
+    deep_impact.title = "Deep Impact"
+    deep_impact.description = "It's like evangelion."
+    deep_impact.year = 1999
+    deep_impact.duration = 106
+    deep_impact.director_id = director.id
+    deep_impact.save
+
+    visit "/movies/#{deep_impact.id}"
+    
+    expect(page).to have_text(deep_impact.duration),
+      "Expected page to have the text, '#{deep_impact.duration}'"
+
+  end
+end
