@@ -1,9 +1,14 @@
 class MoviesController < ApplicationController
-  def casablanca
-    render({ :template => "movie_templates/cb.html.erb" })
+  def index
+    @movies = Movie.all.order({ :created_at => :desc })
+
+    render({ :template => "movie_templates/index.html.erb" })
   end
-  
-  def before2k
-    render({ :template => "movie_templates/pre2000.html.erb" })
+
+  def show
+    the_id = params.fetch("path_id")
+    @movie = Movie.where({:id => the_id }).at(0)
+
+    render({ :template => "movie_templates/show.html.erb" })
   end
 end
