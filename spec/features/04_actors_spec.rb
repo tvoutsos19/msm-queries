@@ -150,7 +150,7 @@ describe "/actors/ACTOR ID]" do
 end
 
 describe "/actors/ACTOR ID]" do
-  it "displays the names of the Movies the Actor has starred in", points: 1 do
+  it "displays the names of the Directors of each Movie the Actor has starred in", points: 1 do
     
     ashley_johnson = Actor.new
     ashley_johnson.name = "Ashley Johnson"
