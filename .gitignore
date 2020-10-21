@@ -33,3 +33,4 @@ examples.txt
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.theia/.ltici_apitoken.yml
