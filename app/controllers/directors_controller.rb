@@ -25,4 +25,34 @@ class DirectorsController < ApplicationController
     render({ :template => "directors_template/show.html.erb" })
   end
 
+  def movies_index
+   render({ :template => "movies_template/movies_index.html.erb" })
+  end
+
+  def movies_details
+    # params looks like {"an_id"=>"42"}
+
+    the_id = params.fetch("an_id")
+
+    @the_movie = Movie.where({ :id => the_id}).at(0)
+
+    render({ :template => "movies_template/movies_details.html.erb" })
+  end
+
+  def actors_index
+   render({ :template => "actors_template/actors_index.html.erb" })
+  end
+
+  def actors_details
+    # params looks like {"an_id"=>"42"}
+
+    the_id = params.fetch("an_id")
+
+    @the_actor = Actor.where({ :id => the_id}).at(0)
+
+    @character = Character.where({ :actor_id => the_id})
+
+    render({ :template => "actors_template/actors_details.html.erb" })
+  end
+
 end
